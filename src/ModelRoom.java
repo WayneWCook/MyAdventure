@@ -17,6 +17,7 @@ public abstract class ModelRoom {
     private static ArrayList<String> friends = new ArrayList<>();
     private static ArrayList<ModelRoom> allRooms = new ArrayList<ModelRoom>();
     final static private String rubberChecken = "Rubber Chicken";
+    final static private String nothing = "Nothing";
 
     KBIO kbio = new KBIO();
 
@@ -207,13 +208,13 @@ public abstract class ModelRoom {
     }
 
     // Print an ArrayLis<String>
-    void printList(String identifyier, ArrayList<String> list) {
+    void printList(String identifier, ArrayList<String> list) {
         if (list.size() > 0) {
             int count = 0;
             for (String elem : list) {
-                System.out.println(identifyier + " " + count++ + " is " + elem + ".");
+                System.out.println(identifier + " " + count++ + " is " + elem + ".");
             }
-        } else System.out.println("You have no " + identifyier + ".");
+        } else System.out.println("You have no " + identifier + ".");
     }
 
     // Let the user know what they have
@@ -222,5 +223,42 @@ public abstract class ModelRoom {
         printList("Treasures", treasures);
         printList("Weapons", weapons);
         printList("Friends", friends);
+    }
+
+    // Now for grabbing an item.
+    private String grabSelectedItem(String identifier, ArrayList<String> list) {
+        String retVal = nothing;
+        int index = 0, size = list.size();
+        if  (size > 0) {
+            if (kbio.YNRequestInput("Do you want to choose one of your " + identifier + "?")) {
+                System.out.println("Select from the following or type " + size + " for none:");
+                printList("Treasures", treasures);
+                boolean loop = true;
+                do {
+                    try {
+                        index = Integer.parseInt(kbio.requestInput("Type the number of the one you want."));
+                        loop = false;
+                    } catch (Exception ex) {
+                        System.out.println("You must enter an integer");
+                        loop = true;
+                    }
+                    if ((index > -0) && (index < list.size())) {
+                        retVal = list.get(index);
+                        list.remove(index);
+                    }
+                } while (loop);
+            }
+        }
+        return retVal;
+    }
+
+    // Now for the actual chose
+    String grabAnItem() {
+        System.out.println("Welcome to selecting an item from your stash");
+        String retVal = nothing;
+        retVal = grabSelectedItem("Treasures", treasures);
+        retVal = grabSelectedItem("Weapons", weapons);
+        retVal = grabSelectedItem("Friends", friends);
+        return retVal;
     }
 }

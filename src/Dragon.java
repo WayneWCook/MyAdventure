@@ -23,7 +23,7 @@ public class Dragon extends ModelRoom {
     // Methods
     private void pickUpItem() {
             if (localTreasures.size() > 0) {
-                super.addTreasure(localBeings.get(0));
+                super.addTreasure(localTreasures.get(0));
                 localTreasures.remove(0);
             }
     }
@@ -79,7 +79,14 @@ public class Dragon extends ModelRoom {
         System.out.println("There is nothing here.");
     }
     void goEast() {
-        System.out.println("There is nothing here.");
+        String item = "Nothing";
+        System.out.println("There sure looks dark ahead.");
+        if (kbio.YNRequestInput("Do you want to see what you have in order to see better?")) {
+            item = super.grabAnItem();
+            System.out.println("You now have " + item);
+        }
+        if (item == flashlight) System.out.println("You are now looking at a mighty dragon.");
+        else System.out.println("You just bumped into something that feels, warm, alive, and definitely covered in scales.");
     }
     void goWest() {
         System.out.println("It sure looks bright out there.");
