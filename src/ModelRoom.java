@@ -149,7 +149,22 @@ public abstract class ModelRoom {
         return allRooms.get(index);
     }
 
-    // Give a standard Menu
+    /* chooseMenuItem(String) - Give a standard Menu
+     * This makes all choices in each room look the same. Consistency is important in a good game.
+     * I could implement this in one of two ways.
+     * 1. Pass in a "this" from the calling room, so that I could use the standard entries (goUp,
+     *    goDown,... and call those directly from this method.
+     *    Advantage: Less code, easier for the room developers to implement.
+     *    Disadvantage - Every call adds at least a return address to the stack. The stack would
+     *       continue to grow with each room visited. This would cause the use of more memory and
+     *       if a person played long enough could cause the system to slow down.
+     * 2. Just print the menu here and return to the calling room to implement the calls.
+     *    Advantage  - Cleans up the stack for each use of the menu.
+     *    Disadvantage - Every room change will still add to the stack, but every menu call will
+     *       not add to the stack. There will still be stack growth, but not as much.
+     * Tradeoff - more coding and slower stack growth vs rapid stack growth
+     * Decision - I went with option 2 to slow the growth of the stack.
+     */
     int chooseMenuItem(String doWhat) {
         int retVal = 0;
         boolean endCheck = true;
