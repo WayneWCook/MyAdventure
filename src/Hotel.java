@@ -14,7 +14,8 @@ public class Hotel extends ModelRoom {
     private Random random = new Random();
     final static private String name = "The Hotel";
     final static private String sword = "Japanese Samurai Sword";
-    final static private String candyBar[] = {"Butter Finger", "Snickers", "Dove", "Neccos","80% Cocoa Dark Chocolate"};
+    final static private String[] candyBar = {"Butter Finger", "Snickers", "Dove", "Necco","80% Cocoa Dark Chocolate",
+    "Good & Plenty", "Twizlers", "Aussie Bites", "Oreos", "Sweet Tarts"};
     // Constructor
     public Hotel() {
         localWeapons.add(sword);
@@ -29,7 +30,7 @@ public class Hotel extends ModelRoom {
     }
 
     String getName() {
-        return this.name;
+        return name;
     }
 
     void enter() {
@@ -96,7 +97,12 @@ public class Hotel extends ModelRoom {
         }
     }
     void goSouth() {
-        System.out.println("There is nothing here.");
+        System.out.println("You are at the front desk.");
+        if (kbio.YNRequestInput("Do you want a room for the night?")) {
+            super.rollDice(11);
+            System.out.println("Your reset has increase your health.");
+            super.addHealth();
+        }
     }
     void goEast() {
         System.out.println("There is nothing here.");
@@ -120,7 +126,7 @@ public class Hotel extends ModelRoom {
     // Now take care of the doAction() command.
     void doAction() {
         System.out.println("You are at the candy counter.");
-        int index = random.nextInt(6);
+        int index = random.nextInt(candyBar.length);
         if (kbio.YNRequestInput("Do you want to buy a " + candyBar[index])) {
             super.addTreasure(candyBar[index]);
         }

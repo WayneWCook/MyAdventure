@@ -15,7 +15,7 @@ public abstract class ModelRoom {
     private static ArrayList<String> treasures = new ArrayList<>();
     private static ArrayList<String> weapons= new ArrayList<>();
     private static ArrayList<String> friends = new ArrayList<>();
-    private static ArrayList<ModelRoom> allRooms = new ArrayList<ModelRoom>();
+    private static ArrayList<ModelRoom> allRooms = new ArrayList<>();
     final static private String rubberChecken = "Rubber Chicken";
     final static private String nothing = "Nothing";
 
@@ -52,7 +52,7 @@ public abstract class ModelRoom {
 
     // To be consistent, provide a method to print the Rubber Chicken name.
     String rubChickName() {
-        return this.rubberChecken;
+        return rubberChecken;
     }
     // Rubbeer chickens will become an important part of this game, so be able to add and remover them
     void addRubberChecken() {
@@ -233,7 +233,7 @@ public abstract class ModelRoom {
             if (kbio.YNRequestInput("Do you want to choose one of your " + identifier + "?")) {
                 System.out.println("Select from the following or type " + size + " for none:");
                 printList("Treasures", treasures);
-                boolean loop = true;
+                boolean loop;
                 do {
                     try {
                         index = Integer.parseInt(kbio.requestInput("Type the number of the one you want."));
@@ -242,11 +242,11 @@ public abstract class ModelRoom {
                         System.out.println("You must enter an integer");
                         loop = true;
                     }
-                    if ((index > -0) && (index < list.size())) {
-                        retVal = list.get(index);
-                        list.remove(index);
-                    }
                 } while (loop);
+                if ((index > -0) && (index < list.size())) {
+                    retVal = list.get(index);
+                    list.remove(index);
+                }
             }
         }
         return retVal;
@@ -255,10 +255,10 @@ public abstract class ModelRoom {
     // Now for the actual chose
     String grabAnItem() {
         System.out.println("Welcome to selecting an item from your stash");
-        String retVal = nothing;
+        String retVal;
         retVal = grabSelectedItem("Treasures", treasures);
-        retVal = grabSelectedItem("Weapons", weapons);
-        retVal = grabSelectedItem("Friends", friends);
+        if (retVal.equals(nothing)) retVal = grabSelectedItem("Weapons", weapons);
+        if (retVal.equals(nothing)) retVal = grabSelectedItem("Friends", friends);
         return retVal;
     }
 }
