@@ -34,6 +34,7 @@ public class Hotel extends ModelRoom {
     }
 
     void enter() {
+        boolean loop = true;
         do {
             System.out.println("You are now in " + this.getName() + ".");
             switch (super.chooseMenuItem("Do Something")) {
@@ -57,8 +58,12 @@ public class Hotel extends ModelRoom {
                     break;
                 case 7:
                     this.doAction();
+                    break;
+                case 8:
+                default:
+                    loop = false;
             }
-        } while (true);
+        } while (loop);
     }
     void goUp() {
         System.out.println("It is dark at the top of the stairs, but you think you see someone at the top.");

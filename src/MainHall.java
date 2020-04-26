@@ -24,10 +24,11 @@ public class MainHall extends ModelRoom {
     }
 
     String getName() {
-        return this.name;
+        return name;
     }
 
     void enter() {
+        boolean loop = true;
         do {
             System.out.println("You are now in " + this.getName() + ".");
             switch (super.chooseMenuItem("Do Something")) {
@@ -51,8 +52,10 @@ public class MainHall extends ModelRoom {
                     break;
                 case 7:
                     this.doAction();
-            }
-        } while (true);
+                case 8:
+                default:
+                    loop = false;}
+        } while (loop);
     }
     void goUp() {
         super.getRoom(0).enter();
@@ -77,7 +80,7 @@ public class MainHall extends ModelRoom {
         String onFloor = "nother";
         if (localWeapons.size() > 0) onFloor = "a " + localWeapons.get(0);
          System.out.println("There is " + onFloor + " here.");
-        if (onFloor != "nothing") {
+        if (!onFloor.equals("nothing")) {
             char r = kbio.requestInput(("Do you want to pick up " + onFloor + "? (Y/N)")).toUpperCase().toCharArray()[0];
             if (r =='Y') this.pickUpItem();
         }

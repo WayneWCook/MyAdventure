@@ -44,10 +44,11 @@ public class Street extends ModelRoom {
 
     // Methods
     String getName() {
-        return this.name;
+        return name;
     }
 
     void enter() {
+        boolean loop = true;
         do {
             System.out.println("You are now on your street, standing on a street next to a grate.");
             switch (super.chooseMenuItem("Do Something")) {
@@ -71,8 +72,10 @@ public class Street extends ModelRoom {
                     break;
                 case 7:
                     this.doAction();
-            }
-        } while (true);
+                case 8:
+                default:
+                    loop = false;}
+        } while (loop);
 
     }
     void goUp() {

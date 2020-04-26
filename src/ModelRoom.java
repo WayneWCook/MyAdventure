@@ -178,15 +178,16 @@ public abstract class ModelRoom {
                         "\n5: Go East" +
                         "\n6. Go West" +
                         "\n7. " + doWhat +
-                        "\n8. Status" +
+                        "\n8. Return to last room" +
+                        "\n9. Status" +
                         "\nChoose";
             try {
                 retVal = Integer.parseInt(kbio.requestInput(input));
-                if ((retVal < 1) || (retVal > 8) ) throw  new Exception("Not Integer");
-                else if ( retVal == 8) printStatus();
+                if ((retVal < 1) || (retVal > 9 )) throw  new Exception("Not Integer");
+                else if ( retVal == 9) printStatus();
                 else endCheck = false;
             } catch (Exception e) {
-                System.out.println("Please enter an integer between 1 and 8");
+                System.out.println("Please enter an integer between 1 and 9");
             }
         } while (endCheck);
         return  retVal;

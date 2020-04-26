@@ -35,10 +35,11 @@ public class Dragon extends ModelRoom {
     }
 
     String getName() {
-        return this.name;
+        return name;
     }
 
     void enter() {
+        boolean loop = true;
         do {
             System.out.println("You are now in " + this.getName() + ".");
             switch (super.chooseMenuItem("Do Something")) {
@@ -62,8 +63,10 @@ public class Dragon extends ModelRoom {
                     break;
                 case 7:
                     this.doAction();
-            }
-        } while (true);
+                case 8:
+                default:
+                    loop = false;}
+        } while (loop);
     }
     void goUp() {
         System.out.println("You found the stairs.");
@@ -85,7 +88,7 @@ public class Dragon extends ModelRoom {
             item = super.grabAnItem();
             System.out.println("You now have " + item);
         }
-        if (item == flashlight) System.out.println("You are now looking at a mighty dragon.");
+        if (item.equals(flashlight)) System.out.println("You are now looking at a mighty dragon.");
         else System.out.println("You just bumped into something that feels, warm, alive, and definitely covered in scales.");
     }
     void goWest() {
@@ -96,7 +99,7 @@ public class Dragon extends ModelRoom {
         String onFloor = "nothing";
         if (localTreasures.size() > 0) onFloor = "a " + localTreasures.get(0);
         System.out.println("There is " + onFloor + " here.");
-        if (onFloor != "nothing") {
+        if (!onFloor.equals("nothing")) {
             if (kbio.YNRequestInput("Do you want to pick up " + onFloor + "?")) this.pickUpItem();
         }
     }
