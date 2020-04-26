@@ -72,7 +72,10 @@ public class Street extends ModelRoom {
                     break;
                 case 7:
                     this.doAction();
+                    break;
                 case 8:
+                    System.out.println("There is no place to return, you are still on the street.");
+                    break;
                 default:
                     loop = false;}
         } while (loop);

@@ -52,6 +52,7 @@ public class MainHall extends ModelRoom {
                     break;
                 case 7:
                     this.doAction();
+                    break;
                 case 8:
                 default:
                     loop = false;}

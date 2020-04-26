@@ -63,6 +63,7 @@ public class Dragon extends ModelRoom {
                     break;
                 case 7:
                     this.doAction();
+                    break;
                 case 8:
                 default:
                     loop = false;}
