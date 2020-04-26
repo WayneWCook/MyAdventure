@@ -74,10 +74,11 @@ public class Street extends ModelRoom {
                     this.doAction();
                     break;
                 case 8:
-                    System.out.println("There is no place to return, you are still on the street.");
-                    break;
                 default:
-                    loop = false;}
+                    System.out.println("There is no place to return, you are still on the street.");
+                    if (kbio.YNRequestInput("Do you want to exit the program?")) loop = false;
+                    break;
+            }
         } while (loop);
 
     }

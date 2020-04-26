@@ -14,8 +14,7 @@ public class Hotel extends ModelRoom {
     private Random random = new Random();
     final static private String name = "The Hotel";
     final static private String sword = "Japanese Samurai Sword";
-    final static private String[] candyBar = {"Butter Finger", "Snickers", "Dove", "Necco","80% Cocoa Dark Chocolate",
-    "Good & Plenty", "Twizlers", "Aussie Bites", "Oreos", "Sweet Tarts"};
+
     // Constructor
     public Hotel() {
         localWeapons.add(sword);
@@ -110,7 +109,8 @@ public class Hotel extends ModelRoom {
         }
     }
     void goEast() {
-        System.out.println("There is nothing here.");
+        System.out.println("I smell the ocean.");
+        if (kbio.YNRequestInput("Do you want to go outside?")) super.getRoom(4).enter();
     }
     void goWest() {
         System.out.println("Ah Sunshine");

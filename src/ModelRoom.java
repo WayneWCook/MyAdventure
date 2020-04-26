@@ -17,7 +17,11 @@ public abstract class ModelRoom {
     private static ArrayList<String> friends = new ArrayList<>();
     private static ArrayList<ModelRoom> allRooms = new ArrayList<>();
     final static private String rubberChecken = "Rubber Chicken";
-    final static private String nothing = "Nothing";
+    final static protected String nothing = "Nothing";
+    final static protected String[] candyBar = {"Butter Finger", "Snickers", "Dove", "Necco","80% Cocoa Dark Chocolate",
+            "Good & Plenty", "Red Licorice", "Black Licorice", "Aussie Bites", "Oreos", "Sweet Tarts", "Life Savers",
+            "Black Crows", "Juicy Fruit Gum"};
+    static private String holding = nothing;
 
     KBIO kbio = new KBIO();
 
@@ -120,6 +124,10 @@ public abstract class ModelRoom {
 
     void removeHealth() {
         health--;
+        if (health < 0 ) {
+            removeLife();
+            health = 3;
+        }
     }
 
 
@@ -138,10 +146,16 @@ public abstract class ModelRoom {
         Hotel hotel = new Hotel();
         allRooms.add(hotel);                                    // Room 2-Hotel
         Dragon dragon = new Dragon();
-        allRooms.add(dragon);                                   // Room 3-Dragon's Lare
-        System.out.println("You have the following rooms");
-        for (int i = 0; i < allRooms.size(); i++) {
-            System.out.println("Room " + i + " is " + allRooms.get(i).getName());
+        allRooms.add(dragon);                                   // Room 3-Dragon's Lair
+        Dock dock = new Dock();
+        allRooms.add(dock);                                     // Room 4-Dock
+        Ship ship = new Ship();
+        allRooms.add(ship);                                     // Room 5-Ship
+        if (kbio.YNRequestInput("Do you want to list all of the rooms?")) {
+            System.out.println("You have the following rooms");
+            for (int i = 0; i < allRooms.size(); i++) {
+                System.out.println("Room " + i + " is " + allRooms.get(i).getName());
+            }
         }
     }
 
@@ -171,6 +185,7 @@ public abstract class ModelRoom {
         boolean endCheck = true;
         do {
                 String input = "Choose from the following" +
+                        "\n0. Grab an item." +
                         "\n1: Go Up" +
                         "\n2. Go down" +
                         "\n3: Go North" +
@@ -183,8 +198,9 @@ public abstract class ModelRoom {
                         "\nChoose";
             try {
                 retVal = Integer.parseInt(kbio.requestInput(input));
-                if ((retVal < 1) || (retVal > 9 )) throw  new Exception("Not Integer");
+                if ((retVal < 0) || (retVal > 9 )) throw  new Exception("Not Integer");
                 else if ( retVal == 9) printStatus();
+                else if ( retVal == 0) grabAnItem();
                 else endCheck = false;
             } catch (Exception e) {
                 System.out.println("Please enter an integer between 1 and 9");
@@ -221,6 +237,7 @@ public abstract class ModelRoom {
     // Let the user know what they have
     void printStatus() {
         System.out.println("You have " + lives + " lives.");
+        System.out.println("You have a health of " + health + ".");
         printList("Treasures", treasures);
         printList("Weapons", weapons);
         printList("Friends", friends);
@@ -230,7 +247,12 @@ public abstract class ModelRoom {
     private String grabSelectedItem(String identifier, ArrayList<String> list) {
         String retVal = nothing;
         int index = 0, size = list.size();
-        if  (size > 0) {
+        System.out.print("You are currently holding " + holding +". ");
+        if (kbio.YNRequestInput("Would you like to return it?")) {
+            addTreasure(holding);
+            holding = nothing;
+        }
+        if  ((size > 0) && (holding.equals(nothing)) ){
             if (kbio.YNRequestInput("Do you want to choose one of your " + identifier + "?")) {
                 System.out.println("Select from the following or type " + size + " for none:");
                 printList("Treasures", treasures);
@@ -250,6 +272,7 @@ public abstract class ModelRoom {
                 }
             }
         }
+        holding = retVal;
         return retVal;
     }
 
