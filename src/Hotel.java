@@ -7,16 +7,18 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Hotel extends ModelRoom {
+class Hotel extends ModelRoom {
 
-    // Attributes
+    // Create instanes of needed classes.
     private ArrayList<String> localWeapons = new ArrayList<>();
     private Random random = new Random();
+
+    // Attributes
     final static private String name = "The Hotel";
     final static private String sword = "Japanese Samurai Sword";
 
     // Constructor
-    public Hotel() {
+    Hotel() {
         localWeapons.add(sword);
     }
 
@@ -56,12 +58,11 @@ public class Hotel extends ModelRoom {
                     this.goWest();
                     break;
                 case 7:
+                default:
                     this.doAction();
                     break;
-                case 8:
-                default:
-                    loop = false;
             }
+            if (exitAdventure) loop = false;
         } while (loop);
     }
     void goUp() {
@@ -131,9 +132,9 @@ public class Hotel extends ModelRoom {
     // Now take care of the doAction() command.
     void doAction() {
         System.out.println("You are at the candy counter.");
-        int index = random.nextInt(candyBar.length);
-        if (kbio.YNRequestInput("Do you want to buy a " + candyBar[index])) {
-            super.addTreasure(candyBar[index]);
+        int index = random.nextInt(Items.candyBar.length);
+        if (kbio.YNRequestInput("Do you want to buy a " + Items.candyBar[index])) {
+            super.addTreasure(Items.candyBar[index]);
         }
     }
 

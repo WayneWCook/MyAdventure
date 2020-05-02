@@ -5,13 +5,13 @@
  * Creation date: 23 April: The adventure has to start somewhere and this is it.
  */import java.util.ArrayList;
 
-public class MainHall extends ModelRoom {
+class MainHall extends ModelRoom {
 
     // Attributes
     private ArrayList<String> localWeapons = new ArrayList<>();
     final static private String name = "The Main Hall";
     // Constructor
-    public MainHall() {
+    MainHall() {
         localWeapons.add("Swiss Army Knife");
     }
 
@@ -51,12 +51,12 @@ public class MainHall extends ModelRoom {
                     this.goWest();
                     break;
                 case 7:
+                default:
                     this.doAction();
                     break;
-                case 8:
-                default:
-                    loop = false;}
-        } while (loop);
+            }
+            if (exitAdventure) loop = false;
+       } while (loop);
     }
     void goUp() {
         super.getRoom(0).enter();

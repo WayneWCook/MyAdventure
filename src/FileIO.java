@@ -24,7 +24,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class FileIO {
-    private String fileName = "PhoneBook.txt";
+    private String fileName = "adventure.status";
     private File file;
     private Scanner inputFile;
     private FileWriter outputFile;

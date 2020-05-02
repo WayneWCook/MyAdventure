@@ -8,7 +8,7 @@
  */
 import java.util.Random;
 
-public class Dock extends ModelRoom {
+class Dock extends ModelRoom {
     //Atributes
     final static private String name = "Dock";
     final static private int shipDocked = 4;
@@ -42,12 +42,11 @@ public class Dock extends ModelRoom {
                     this.goWest();
                     break;
                 case 7:
+                default:
                     this.doAction();
                     break;
-                case 8:
-                default:
-                    loop = false;
             }
+            if (exitAdventure) loop = false;
         } while (loop);
     }
     void goUp() {

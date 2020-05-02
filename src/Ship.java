@@ -8,7 +8,7 @@
  */
 import java.util.Random;
 
-public class Ship extends ModelRoom {
+class Ship extends ModelRoom {
     //Atributes
     final static private String name = "Ship";
     final static private int shipDocked = 4;
@@ -42,12 +42,11 @@ public class Ship extends ModelRoom {
                     this.goWest();
                     break;
                 case 7:
+                default:
                     this.doAction();
                     break;
-                case 8:
-                default:
-                    loop = false;
             }
+            if (exitAdventure) loop = false;
         } while (loop);
     }
     void goUp() {
@@ -101,9 +100,9 @@ public class Ship extends ModelRoom {
     void goWest() {}
     void doAction() {
         System.out.println("You are at the candy counter.");
-        int index = random.nextInt(candyBar.length);
-        if (kbio.YNRequestInput("Do you want to buy a " + candyBar[index])) {
-            super.addTreasure(candyBar[index]);
+        int index = random.nextInt(Items.candyBar.length);
+        if (kbio.YNRequestInput("Do you want to buy a " + Items.candyBar[index])) {
+            super.addTreasure(Items.candyBar[index]);
         }
 
     }

@@ -6,7 +6,7 @@
  */
 import java.util.ArrayList;
 
-public class Dragon extends ModelRoom {
+class Dragon extends ModelRoom {
 
     // Attributes
     private ArrayList<String> localTreasures = new ArrayList<>();
@@ -15,7 +15,7 @@ public class Dragon extends ModelRoom {
     final static private String dragon = "Dragon";
     final static private String flashlight = "Flashlight";
     // Constructor
-    public Dragon() {
+    Dragon() {
         localBeings.add(dragon);
         localTreasures.add(flashlight);
     }
@@ -62,11 +62,11 @@ public class Dragon extends ModelRoom {
                     this.goWest();
                     break;
                 case 7:
+                default:
                     this.doAction();
                     break;
-                case 8:
-                default:
-                    loop = false;}
+            }
+            if (exitAdventure) loop = false;
         } while (loop);
     }
     void goUp() {

@@ -71,14 +71,12 @@ public class Street extends ModelRoom {
                     this.goWest();
                     break;
                 case 7:
-                    this.doAction();
-                    break;
-                case 8:
                 default:
-                    System.out.println("There is no place to return, you are still on the street.");
-                    if (kbio.YNRequestInput("Do you want to exit the program?")) loop = false;
+                    this.doAction();
+                    if (kbio.YNRequestInput("Do you want to exit the street?")) exitAdventure = true;
                     break;
             }
+            if (exitAdventure) loop = false;
         } while (loop);
 
     }

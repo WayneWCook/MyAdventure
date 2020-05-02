@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         KBIO kbio = new KBIO();
         StartAdventure startAdventure = new StartAdventure();
-        boolean entry = kbio.YNRequestInput("You are standing on a street corner. Do you want a great adventure?");
+        boolean entry = kbio.YNRequestInput("You are in your room due to Covid-19. Do you want a great adventure?");
         if (entry)  startAdventure.enter();
         System.out.println("We hope you enjoyed your adventure. Come back soon!");
     }

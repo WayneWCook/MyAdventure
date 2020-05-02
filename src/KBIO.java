@@ -18,16 +18,28 @@ public class KBIO {
      * It returns a True for any string start with Y and a False for an string starting with
      * any other letter */
     public boolean YNRequestInput(String instructs) {
-        boolean retVal = false;
-        char results = this.requestInput( instructs+ " (y/n)").toUpperCase().toCharArray()[0];
-        if (results == 'Y') retVal = true;
+        boolean retVal = false, loop = true;
+        do {
+            try {
+                char results = this.requestInput(instructs + " (y/n)").toUpperCase().toCharArray()[0];
+                if (results == 'Y') retVal = true;
+                loop = false;
+            } catch (Exception ex) {
+                System.out.println("Please type y ir n");
+            }
+        } while (loop);
         return retVal;
     }
     /* This is a generic input routine that reads one string of characters */
     public String requestInput(String instructs) {
         String retVal;
         System.out.print(instructs + ": ");                     // Print out the instructions.
-        return getLine();
+        try {
+            retVal = getLine();
+        } catch (Exception ex) {
+            retVal = "";
+        }
+        return retVal;
     }
 
     /* Have common named routines for file I/O and user interface (keyboard and display) I/O */
