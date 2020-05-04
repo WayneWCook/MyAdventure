@@ -83,7 +83,8 @@ class Dragon extends ModelRoom {
         System.out.println("There is nothing here.");
     }
     void goEast() {
-        String item = "Nothing";
+        String item = Items.nothing;
+        boolean enterTreasury = false;
         System.out.println("There sure looks dark ahead.");
         if (kbio.YNRequestInput("Do you want to see what you have in order to see better?")) {
             item = super.grabAnItem();
@@ -91,7 +92,29 @@ class Dragon extends ModelRoom {
         }
         if (item.equals(flashlight)) System.out.println("You are now looking at a mighty dragon.");
         else System.out.println("You just bumped into something that feels, warm, alive, and definitely covered in scales.");
+        if(kbio.requestInput("And what do you say to the dragon?").contains("excuse")) {
+            if (kbio.YNRequestInput("Oh, a polite person, I like polite people. Do you want to see my treasure room?")) {
+                enterTreasury = true;
+            }
+        } else {
+            System.out.println("You are getting me agree, prepare to defend yourself.");
+            String grabIt = super.grabAnItem();
+            System.out.println("You have a " + grabIt + ". ");
+            if (kbio.requestInput("What are you going to do with it?").contains("give")) {
+                if (grabIt.equals(Items.candyBar[3])) {
+                    System.out.println("Thank you for the " + Items.candyBar[3] + "! You may pass");
+                    enterTreasury = true;
+                } else {
+                    System.out.println("I REALLY do not LIKE " + grabIt);
+                }
+            } else {
+                System.out.println("I am growing tired of this. You've been flamed.");
+                removeHealth();
+            }
+        }
+        if (enterTreasury) super.getRoom(6).enter();
     }
+
     void goWest() {
         System.out.println("It sure looks bright out there.");
         super.getRoom(1).enter();

@@ -46,7 +46,7 @@ public class StartAdventure extends ModelRoom {
             setHealth(intEntry);
             int listIndex = 0, listNumb = 0, check = 0;           // Which list is to be accessed.
             String value;
-            for (int k = 4; k < fileContent.size(); k++) {
+            for (int k = 3; k < fileContent.size(); k++) {
                 value = fileContent.get(k);
                 if (Items.assets[listNumb].equals(value)) listIndex = listNumb++;
                 else if (listIndex == 0) addTreasure(value);

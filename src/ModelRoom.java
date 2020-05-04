@@ -30,7 +30,7 @@ public abstract class ModelRoom {
 
     // Methods
 
-    void startOver() {
+    private void startOver() {
         int i;
         lives = 3;
         int tresSize = treasures.size();
@@ -175,6 +175,8 @@ public abstract class ModelRoom {
         allRooms.add(dock);                                     // Room 4-Dock
         Ship ship = new Ship();
         allRooms.add(ship);                                     // Room 5-Ship
+        Treasury treasury = new Treasury();
+        allRooms.add(treasury);                                 // Room 6-Treasury
         if (kbio.YNRequestInput("Do you want to list all of the rooms?")) {
             System.out.println("You have the following rooms");
             for (int i = 0; i < allRooms.size(); i++) {
@@ -261,9 +263,11 @@ public abstract class ModelRoom {
     void printStatus() {
         System.out.println("You have " + lives + " lives.");
         System.out.println("You have a health of " + health + ".");
-        printList("Treasures", treasures);
-        printList("Weapons", weapons);
-        printList("Friends", friends);
+        printList(Items.assets[0], treasures);
+        printList(Items.assets[1], candyBars);
+        printList(Items.assets[2], weapons);
+        printList(Items.assets[3], friends);
+        while(kbio.YNRequestInput("Do you want to pause to look at your status?"));
     }
 
     // Now for grabbing an item.
@@ -271,14 +275,14 @@ public abstract class ModelRoom {
         String retVal = Items.nothing;
         int index = 0, size = list.size();
         System.out.print("You are currently holding " + holding + ". ");
-        if (kbio.YNRequestInput("Would you like to return it?")) {
+        if (!holding.equals(Items.nothing) && kbio.YNRequestInput("Would you like to return it?")) {
             addTreasure(holding);
             holding = Items.nothing;
         }
         if ((size > 0) && (holding.equals(Items.nothing))) {
             if (kbio.YNRequestInput("Do you want to choose one of your " + identifier + "?")) {
                 System.out.println("Select from the following or type " + size + " for none:");
-                printList("Treasures", treasures);
+                printList(identifier, list);
                 boolean loop;
                 do {
                     try {

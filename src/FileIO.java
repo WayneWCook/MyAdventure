@@ -28,7 +28,7 @@ public class FileIO {
     private File file;
     private Scanner inputFile;
     private FileWriter outputFile;
-    boolean fileExists = false;                     // Flag for whether file exists or not.
+    private boolean fileExists = false;                     // Flag for whether file exists or not.
 
     // Constructor - must include the fileName or an empty string to use the default name.
     public FileIO(String fileName) {
@@ -129,13 +129,12 @@ public class FileIO {
                 splitArray.add(elem);
             }
         }
-        return;
-    }
+     }
 
     public ArrayList<String> readFile() {
         String tempLine;
 
-        ArrayList<String> params = new ArrayList<String>();
+        ArrayList<String> params = new ArrayList<>();
         // Set up the file.
         try {
             inputFile = new Scanner(file);
@@ -145,9 +144,11 @@ public class FileIO {
             System.out.println("file: " + file + " cannot be opened.");
             fileExists = false;
         }
+        String inputLine;
         if (fileExists) {
             while (inputFile.hasNextLine()) {
-                params.add(inputFile.nextLine());
+                inputLine = inputFile.nextLine();
+                params.add(inputLine);
             }
         }
         // Now return what you have, if no file then return array shoulc be NULL length.

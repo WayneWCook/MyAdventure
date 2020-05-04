@@ -117,7 +117,7 @@ class Hotel extends ModelRoom {
         System.out.println("Ah Sunshine");
         super.getRoom(0).enter();        // Enter the Hotel.
     }
-    void acceptSword() {
+    private void acceptSword() {
         if (localWeapons.size() > 0) {
             super.addWeapon(localWeapons.get(0));
             localWeapons.remove(0);
@@ -134,7 +134,7 @@ class Hotel extends ModelRoom {
         System.out.println("You are at the candy counter.");
         int index = random.nextInt(Items.candyBar.length);
         if (kbio.YNRequestInput("Do you want to buy a " + Items.candyBar[index])) {
-            super.addTreasure(Items.candyBar[index]);
+            super.addCandyBar(Items.candyBar[index]);
         }
     }
 
