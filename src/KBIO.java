@@ -16,22 +16,20 @@ public class KBIO {
 
     /* This is a generic input routine that reads one string of characters, tacks on a (Y/N)
      * It returns a True for any string start with Y and a False for an string starting with
-     * any other letter */
+     * any other letter - Note: Typing  [ENTER] will be counted as a No. */
     public boolean YNRequestInput(String instructs) {
-        boolean retVal = false, loop = true;
-        do {
-            try {
-                char results = this.requestInput(instructs + " (y/n)").toUpperCase().toCharArray()[0];
-                if (results == 'Y') retVal = true;
-                loop = false;
-            } catch (Exception ex) {
-                System.out.println("Please type y ir n");
-            }
-        } while (loop);
+        boolean retVal = false;
+        try {
+            char results = this.requestInput(instructs + " (y/n)").toUpperCase().toCharArray()[0];
+            if (results == 'Y') retVal = true;
+        } catch (Exception ex) {
+            System.out.println("Please type y ir n");
+        }
         return retVal;
     }
+
     /* This is a generic input routine that reads one string of characters */
-    public String requestInput(String instructs) {
+    protected String requestInput(String instructs) {
         String retVal;
         System.out.print(instructs + ": ");                     // Print out the instructions.
         try {
@@ -43,9 +41,8 @@ public class KBIO {
     }
 
     /* Have common named routines for file I/O and user interface (keyboard and display) I/O */
-    public String getLine() {
-        String retVal = input.nextLine();
-        return retVal;
+    private String getLine() {
+        return input.nextLine();
     }
 
 }

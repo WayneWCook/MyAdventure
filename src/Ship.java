@@ -22,7 +22,7 @@ class Ship extends ModelRoom {
         boolean loop = true;
         do {
             System.out.println("You are now in " + this.getName() + ".");
-            switch (super.chooseMenuItem("Do Something")) {
+            switch (super.chooseMenuItem("Ah the Candy Store")) {
                 case 1:
                     this.goUp();
                     break;

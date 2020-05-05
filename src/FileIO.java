@@ -31,7 +31,7 @@ public class FileIO {
     private boolean fileExists = false;                     // Flag for whether file exists or not.
 
     // Constructor - must include the fileName or an empty string to use the default name.
-    public FileIO(String fileName) {
+    protected FileIO(String fileName) {
         if (fileName.length() > 0) {
             this.fileName = fileName;                    // Initialize the file name.
         }
@@ -57,12 +57,12 @@ public class FileIO {
     }
 
     // Write the file from scratch.
-    public boolean writeFile(ArrayList<String> lines) {
+    protected boolean writeFile(ArrayList<String> lines, boolean appendFlag) {
         boolean retVal = true;
         // First set up the file to write to it. Erases file at first.
         try {
-            outputFile.close(); // Cose it before restarting it.
-            outputFile = new FileWriter(file, true );  // Incase we want to add to the file later.
+            outputFile.close(); // Close it before restarting it.
+            outputFile = new FileWriter(file, appendFlag );  // Incase we want to add to the file later.
         }
         catch (FileNotFoundException ex) {
             System.out.println("file: " + file + " dies not exist.");
@@ -131,7 +131,7 @@ public class FileIO {
         }
      }
 
-    public ArrayList<String> readFile() {
+    protected ArrayList<String> readFile() {
         String tempLine;
 
         ArrayList<String> params = new ArrayList<>();

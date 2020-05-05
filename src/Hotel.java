@@ -38,7 +38,7 @@ class Hotel extends ModelRoom {
         boolean loop = true;
         do {
             System.out.println("You are now in " + this.getName() + ".");
-            switch (super.chooseMenuItem("Do Something")) {
+            switch (super.chooseMenuItem("Look! Candy!!")) {
                 case 1:
                     this.goUp();
                     break;
@@ -90,7 +90,7 @@ class Hotel extends ModelRoom {
             if (super.removeRubberChecken()) {
                 super.addLife();                        // Food gives you another life
                 System.out.println("Food gives you another life.");
-                boolean results = kbio.requestInput("Did you enjoy your meal?").contains("Thank you");
+                boolean results = kbio.requestInput("Did you enjoy your meal?").toLowerCase().contains("thank you");
                 if (results) {
                     super.addHealth();
                     System.out.println("Being polite, gives you another health");

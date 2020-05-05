@@ -8,13 +8,17 @@
  */
 import java.io.*;               // Be able to check for existance of file.
 import java.nio.file.Files;
+import java.util.Calendar;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.lang.String;
 
-public class StartAdventure extends ModelRoom {
+class StartAdventure extends ModelRoom {
     // Useful classes
     private FileIO fileIO;
     private File file;                  // Needed for checking the existance of a file.
+    private File backup;                // Used to backup file when needed.
     //private Items items = new Items();
 
     //Atributes
@@ -34,7 +38,6 @@ public class StartAdventure extends ModelRoom {
         boolean startOver = true;
         if (file.isFile() && kbio.YNRequestInput("Do you want to start with your current scores?"))  {
             fileIO = new FileIO(fileName);
-            startOver = false;
             fileContent = fileIO.readFile();
             // Find lives and set them
             int intEntry = Integer.parseInt(fileContent.get(1));
@@ -44,15 +47,20 @@ public class StartAdventure extends ModelRoom {
             intEntry = Integer.parseInt(fileContent.get(2));
             if (intEntry < 3) intEntry = 3;
             setHealth(intEntry);
-            int listIndex = 0, listNumb = 0, check = 0;           // Which list is to be accessed.
+            int listIndex = 0, listNumb = 0, check = 0;             // Which list is to be accessed.
             String value;
-            for (int k = 3; k < fileContent.size(); k++) {
-                value = fileContent.get(k);
-                if (Items.assets[listNumb].equals(value)) listIndex = listNumb++;
-                else if (listIndex == 0) addTreasure(value);
-                else if (listIndex == 1) addCandyBar(value);
-                else if (listIndex == 2) addWeapon(value);
-                else if (listIndex == 3) addFriend(value);
+            try {                                                   // Catch any bad reads of the file.
+                for (int k = 3; k < fileContent.size(); k++) {          // Read the file
+                    value = fileContent.get(k);
+                    if (Items.assets[listNumb].equals(value)) listIndex = listNumb++;
+                    else if (listIndex == 0) addTreasure(value);
+                    else if (listIndex == 1) addCandyBar(value);
+                    else if (listIndex == 2) addWeapon(value);
+                    else if (listIndex == 3) addFriend(value);
+                }
+                startOver = false;
+            } catch (Exception ex) {
+                System.out.println("The file could not be properly read, so you will have the default values.");
             }
         }
         System.out.println("To the street again!");
@@ -93,8 +101,37 @@ public class StartAdventure extends ModelRoom {
                 fileContent.add(getFriendsAsset(i) + "\n");
             }
         }
+        // check tio see if file exists before writing to it.
+        String inActiveDate;
+        if (file.isFile()) {
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.DATE, 1);
+            Date date = cal.getTime();
+            SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMdd");
+            try {
+                inActiveDate = format1.format(date);
+                System.out.println(inActiveDate );
+            } catch (Exception e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+                System.out.println("Date cannot be properly formated");
+                inActiveDate = "bak";
+            }
+            int buNum = 0;
+            String backupName;
+            do {
+                backupName = getUserName() + "." + inActiveDate + "." + buNum++;
+                backup = new File(backupName);
+            } while (backup.isFile());
+            fileIO = null;
+            try {
+                Files.copy(file.toPath(), backup.toPath());
+            } catch (IOException ex) {
+                System.out.println("Copy of file failed.");
+            }
+        }
         fileIO = new FileIO(fileName);
-        fileIO.writeFile(fileContent);
+        fileIO.writeFile(fileContent, false);
     }
     // Include required methods that will do absolutely nothing.
     void goUp() {}
@@ -105,3 +142,5 @@ public class StartAdventure extends ModelRoom {
     void goWest() {}
     void doAction() {}
 }
+
+
