@@ -177,6 +177,8 @@ public abstract class ModelRoom {
         allRooms.add(ship);                                     // Room 5-Ship
         Treasury treasury = new Treasury();
         allRooms.add(treasury);                                 // Room 6-Treasury
+        BaseballField baseballField = new BaseballField();
+        allRooms.add(baseballField);                            // Room 7-Baseball Field
         if (kbio.YNRequestInput("Do you want to list all of the rooms?")) {
             System.out.println("You have the following rooms");
             for (int i = 0; i < allRooms.size(); i++) {

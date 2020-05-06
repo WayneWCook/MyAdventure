@@ -103,6 +103,9 @@ public class Street extends ModelRoom {
     void goNorth() {
         System.out.println("You just entered a brier patch");
         super.rollDice(7);
+        if (kbio.YNRequestInput("You spy a baseball field. Do you want to play ball>?")) {
+            super.getRoom(7).enter();
+        }
     }
     void goSouth() {
         System.out.println("Yuo bumped into a good friend, you gained a life");
@@ -113,7 +116,7 @@ public class Street extends ModelRoom {
         super.getRoom(2).enter();        // Enter the Hotel.
     }
     void goWest() {
-        System.out.println("You reached the end of the streetl and found a friend selling rubber chickens.");
+        System.out.println("You reached the end of the street and found a friend selling rubber chickens.");
         if (kbio.YNRequestInput("Do you want to buy a rubber chicken?")) {
             System.out.println("You must roll a 9 to buy the checken");
             super.rollDice(9);
