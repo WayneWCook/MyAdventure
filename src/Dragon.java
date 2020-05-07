@@ -97,7 +97,7 @@ class Dragon extends ModelRoom {
                 enterTreasury = true;
             }
         } else {
-            System.out.println("You are getting me agree, prepare to defend yourself.");
+            System.out.println("You are getting me angry, prepare to defend yourself.");
             String grabIt = super.grabAnItem();
             System.out.println("You have a " + grabIt + ". ");
             if (kbio.requestInput("What are you going to do with it?").contains("give")) {

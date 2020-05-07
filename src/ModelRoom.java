@@ -63,7 +63,7 @@ public abstract class ModelRoom {
         return rubberChecken;
     }
 
-    // Rubbeer chickens will become an important part of this game, so be able to add and remover them
+    // Rubber chickens will become an important part of this game, so be able to add and remover them
     void addRubberChecken() {
         treasures.add(rubberChecken);
     }
@@ -177,8 +177,11 @@ public abstract class ModelRoom {
         allRooms.add(ship);                                     // Room 5-Ship
         Treasury treasury = new Treasury();
         allRooms.add(treasury);                                 // Room 6-Treasury
+        Island island = new Island();
+        allRooms.add(island);
         BaseballField baseballField = new BaseballField();
         allRooms.add(baseballField);                            // Room 7-Baseball Field
+                                         // Room 8-Island
         if (kbio.YNRequestInput("Do you want to list all of the rooms?")) {
             System.out.println("You have the following rooms");
             for (int i = 0; i < allRooms.size(); i++) {
@@ -303,6 +306,17 @@ public abstract class ModelRoom {
         }
         holding = retVal;
         return retVal;
+    }
+
+    Boolean SavedItems(String object){
+        boolean check = false;
+        for (int j =0; j<=Items.treasures.length; j++){
+            if (Items.treasures[j].equals(object)){
+                check = true;
+            }
+        }
+
+        return check;
     }
 
     // Now for the actual chose

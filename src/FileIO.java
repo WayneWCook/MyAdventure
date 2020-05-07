@@ -81,7 +81,7 @@ public class FileIO {
             }
         }
         try {
-            outputFile.flush();   // Force the actula write
+            outputFile.flush();   // Force the actual write
         }catch (IOException ex) {
             System.out.println("Failure to write to the file");
         }
@@ -93,7 +93,7 @@ public class FileIO {
         boolean retVal = true;
         try {
             outputFile.append("\n" + line);
-            outputFile.flush();         // Flush the burffer.
+            outputFile.flush();         // Flush the buffer.
         } catch (IOException e) {
             retVal = false;
         }
@@ -151,7 +151,7 @@ public class FileIO {
                 params.add(inputLine);
             }
         }
-        // Now return what you have, if no file then return array shoulc be NULL length.
+        // Now return what you have, if no file then return array should be NULL length.
         return(params);                            // Return the array list of Strings, Null if could not open file.
     }
 }

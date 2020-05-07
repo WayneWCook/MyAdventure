@@ -96,7 +96,14 @@ class Ship extends ModelRoom {
         addLife();
         removeHealth();
     }
-    void goEast() {}
+    void goEast() {
+        System.out.println("It's all ocean as far as you can sea");
+    if (kbio.YNRequestInput("Would you like to jump in?")){
+        System.out.println("You just woke up on a faraway island");
+        removeHealth();
+        super.getRoom(7).enter();
+        }
+    }
     void goWest() {}
     void doAction() {
         System.out.println("You are at the candy counter.");

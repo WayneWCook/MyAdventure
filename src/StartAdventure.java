@@ -34,10 +34,11 @@ class StartAdventure extends ModelRoom {
         int asset;
         super.setUserName(kbio.requestInput("What is your name?"));
         String fileName = super.getUserName() + ".status";
-        file = new File(fileName);  // Create the file to check for existance before setting up the FileIO.
+        file = new File(fileName);  // Create the file to check for existence before setting up the FileIO.
         boolean startOver = true;
         if (file.isFile() && kbio.YNRequestInput("Do you want to start with your current scores?"))  {
             fileIO = new FileIO(fileName);
+            startOver = false;
             fileContent = fileIO.readFile();
             // Find lives and set them
             int intEntry = Integer.parseInt(fileContent.get(1));
@@ -47,20 +48,15 @@ class StartAdventure extends ModelRoom {
             intEntry = Integer.parseInt(fileContent.get(2));
             if (intEntry < 3) intEntry = 3;
             setHealth(intEntry);
-            int listIndex = 0, listNumb = 0, check = 0;             // Which list is to be accessed.
+            int listIndex = 0, listNumb = 0, check = 0;           // Which list is to be accessed.
             String value;
-            try {                                                   // Catch any bad reads of the file.
-                for (int k = 3; k < fileContent.size(); k++) {          // Read the file
-                    value = fileContent.get(k);
-                    if (Items.assets[listNumb].equals(value)) listIndex = listNumb++;
-                    else if (listIndex == 0) addTreasure(value);
-                    else if (listIndex == 1) addCandyBar(value);
-                    else if (listIndex == 2) addWeapon(value);
-                    else if (listIndex == 3) addFriend(value);
-                }
-                startOver = false;
-            } catch (Exception ex) {
-                System.out.println("The file could not be properly read, so you will have the default values.");
+            for (int k = 3; k < fileContent.size(); k++) {
+                value = fileContent.get(k);
+                if (Items.assets[listNumb].equals(value)) listIndex = listNumb++;
+                else if (listIndex == 0) addTreasure(value);
+                else if (listIndex == 1) addCandyBar(value);
+                else if (listIndex == 2) addWeapon(value);
+                else if (listIndex == 3) addFriend(value);
             }
         }
         System.out.println("To the street again!");
@@ -142,5 +138,3 @@ class StartAdventure extends ModelRoom {
     void goWest() {}
     void doAction() {}
 }
-
-

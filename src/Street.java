@@ -14,6 +14,7 @@ public class Street extends ModelRoom {
     private ArrayList<String> localFriends = new ArrayList<>();
     private String possition = "missing";
     private KBIO kbio = new KBIO();
+    //private FileIO fileIO = new FileIO();
     final static private String name = "The Street";
 
     // Constructor
@@ -33,15 +34,16 @@ public class Street extends ModelRoom {
 
     private boolean checkGrate() {
         boolean retVal = false;
-        possition = "missing";
-        if (localTreasures.size() > 0) {
-            possition = "down";
-            retVal = true;
-        }
-        System.out.println("The grate is " + possition);
-        return retVal;
-    }
+        if (SavedItems("Grate")) {
+            possition = "missing";
+            if (localTreasures.size() > 0) {
+                possition = "down";
+                retVal = true;
+            }
+            System.out.println("The grate is " + possition);
 
+        }return retVal;
+    }
     // Methods
     String getName() {
         return name;
@@ -103,7 +105,7 @@ public class Street extends ModelRoom {
     void goNorth() {
         System.out.println("You just entered a brier patch");
         super.rollDice(7);
-        super.getRoom(7).enter();
+        super.getRoom(8).enter();
     }
     void goSouth() {
         System.out.println("Yuo bumped into a good friend, you gained a life");

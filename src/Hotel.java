@@ -9,7 +9,7 @@ import java.util.Random;
 
 class Hotel extends ModelRoom {
 
-    // Create instanes of needed classes.
+    // Create instances of needed classes.
     private ArrayList<String> localWeapons = new ArrayList<>();
     private Random random = new Random();
 
@@ -72,7 +72,7 @@ class Hotel extends ModelRoom {
             if (kbio.requestInput("Do you have anything to say?").contains("you")) {
                 String results = kbio.requestInput("I just moved in from overseas and I am meeting new people.");
                 if (results.contains("Japan")) {
-                    if (kbio.YNRequestInput("Thank you for being so nice. do ou like Samurai swords?")) {
+                    if (kbio.YNRequestInput("Thank you for being so nice. do you like Samurai swords?")) {
                         if (kbio.YNRequestInput("Would you like one?")) this.acceptSword();
                     }
                 }
