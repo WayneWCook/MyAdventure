@@ -177,11 +177,11 @@ public abstract class ModelRoom {
         allRooms.add(ship);                                     // Room 5-Ship
         Treasury treasury = new Treasury();
         allRooms.add(treasury);                                 // Room 6-Treasury
-        Island island = new Island();
+        Island island = new Island();                           // Room 7-Island
         allRooms.add(island);
         BaseballField baseballField = new BaseballField();
-        allRooms.add(baseballField);                            // Room 7-Baseball Field
-                                         // Room 8-Island
+        allRooms.add(baseballField);                            // Room 8-Baseball Field
+
         if (kbio.YNRequestInput("Do you want to list all of the rooms?")) {
             System.out.println("You have the following rooms");
             for (int i = 0; i < allRooms.size(); i++) {
