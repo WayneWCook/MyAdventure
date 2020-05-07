@@ -59,10 +59,7 @@ class BaseballField extends ModelRoom {
     void goSouth() {
         System.out.println("You just entered a brier patch");
         super.rollDice(7);
-        if (kbio.YNRequestInput("You see the street. Do you want to play ball>?")) {
-            super.getRoom(0).enter();
-        }
-
+        super.getRoom(0).enter();
     }
     void goEast() { System.out.println("Nothing but wall."); }
     void goWest() { System.out.println("Nothing but wall."); }

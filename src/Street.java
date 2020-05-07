@@ -17,7 +17,7 @@ public class Street extends ModelRoom {
     final static private String name = "The Street";
 
     // Constructor
-    public Street() {
+    protected Street() {
         this.localTreasures.add("Grate");
     }
 
@@ -103,9 +103,7 @@ public class Street extends ModelRoom {
     void goNorth() {
         System.out.println("You just entered a brier patch");
         super.rollDice(7);
-        if (kbio.YNRequestInput("You spy a baseball field. Do you want to play ball>?")) {
-            super.getRoom(7).enter();
-        }
+        super.getRoom(7).enter();
     }
     void goSouth() {
         System.out.println("Yuo bumped into a good friend, you gained a life");
