@@ -177,8 +177,8 @@ public abstract class ModelRoom {
         allRooms.add(ship);                                     // Room 5-Ship
         Treasury treasury = new Treasury();
         allRooms.add(treasury);                                 // Room 6-Treasury
-        Island island = new Island();                           // Room 7-Island
-        allRooms.add(island);
+        Island island = new Island();
+        allRooms.add(island);                                   // Room 7-Island
         BaseballField baseballField = new BaseballField();
         allRooms.add(baseballField);                            // Room 8-Baseball Field
 
