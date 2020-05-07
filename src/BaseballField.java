@@ -10,7 +10,7 @@ import java.util.Random;
 
 class BaseballField extends ModelRoom {
     //Atributes
-    final static private String name = "Dragon's Treasury";
+    final static private String name = "Baseball Field";
     final static private int shipDocked = 4;
     static private int shipIn = 0;
     private Random random = new Random();

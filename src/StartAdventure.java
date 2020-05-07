@@ -36,7 +36,7 @@ class StartAdventure extends ModelRoom {
         String fileName = super.getUserName() + ".status";
         file = new File(fileName);  // Create the file to check for existence before setting up the FileIO.
         boolean startOver = true;
-        if (file.isFile() && kbio.YNRequestInput("Do you want to start with your current scores?"))  {
+        if (file.isFile() && kbio.YNRequestInput("Do you want to start with your current scores?")) {
             fileIO = new FileIO(fileName);
             startOver = false;
             fileContent = fileIO.readFile();
@@ -50,13 +50,18 @@ class StartAdventure extends ModelRoom {
             setHealth(intEntry);
             int listIndex = 0, listNumb = 0, check = 0;           // Which list is to be accessed.
             String value;
-            for (int k = 3; k < fileContent.size(); k++) {
-                value = fileContent.get(k);
-                if (Items.assets[listNumb].equals(value)) listIndex = listNumb++;
-                else if (listIndex == 0) addTreasure(value);
-                else if (listIndex == 1) addCandyBar(value);
-                else if (listIndex == 2) addWeapon(value);
-                else if (listIndex == 3) addFriend(value);
+            try {
+                for (int k = 3; k < fileContent.size(); k++) {
+                    value = fileContent.get(k);
+                    if (Items.assets[listNumb].equals(value)) listIndex = listNumb++;
+                    else if (listIndex == 0) addTreasure(value);
+                    else if (listIndex == 1) addCandyBar(value);
+                    else if (listIndex == 2) addWeapon(value);
+                    else if (listIndex == 3) addFriend(value);
+                }
+                startOver = false;
+            } catch (Exception ex) {
+                System.out.println("Your file could not be properly read, you are starting over");
             }
         }
         System.out.println("To the street again!");
