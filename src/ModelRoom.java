@@ -309,10 +309,10 @@ public abstract class ModelRoom {
     }
 
     Boolean SavedItems(String object){
-        boolean check = false;
+        boolean check = true;
         for (int j =0; j<=Items.treasures.length; j++){
             if (Items.treasures[j].equals(object)){
-                check = true;
+                check = false;
             }
         }
 

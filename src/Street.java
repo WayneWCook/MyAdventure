@@ -34,15 +34,15 @@ public class Street extends ModelRoom {
 
     private boolean checkGrate() {
         boolean retVal = false;
-        if (SavedItems("Grate")) {
+
             possition = "missing";
             if (localTreasures.size() > 0) {
                 possition = "down";
-                retVal = true;
+                retVal = SavedItems("Grate");
             }
             System.out.println("The grate is " + possition);
 
-        }return retVal;
+        return retVal;
     }
     // Methods
     String getName() {
