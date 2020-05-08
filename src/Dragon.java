@@ -92,7 +92,7 @@ class Dragon extends ModelRoom {
         }
         if (item.equals(flashlight)) System.out.println("You are now looking at a mighty dragon.");
         else System.out.println("You just bumped into something that feels, warm, alive, and definitely covered in scales.");
-        if(kbio.requestInput("And what do you say to the dragon?").contains("excuse")) {
+        if(kbio.requestInput("And what do you say to the dragon?").toLowerCase().contains("excuse")) {
             if (kbio.YNRequestInput("Oh, a polite person, I like polite people. Do you want to see my treasure room?")) {
                 enterTreasury = true;
             }
@@ -100,14 +100,26 @@ class Dragon extends ModelRoom {
             System.out.println("You are getting me angry, prepare to defend yourself.");
             String grabIt = super.grabAnItem();
             System.out.println("You have a " + grabIt + ". ");
-            if (kbio.requestInput("What are you going to do with it?").contains("give")) {
+            String response = kbio.requestInput("What are you going to do with it?");
+            if (response.contains("give")) {
                 if (grabIt.equals(Items.candyBar[3])) {
                     System.out.println("Thank you for the " + Items.candyBar[3] + "! You may pass");
                     enterTreasury = true;
                 } else {
                     System.out.println("I REALLY do not LIKE " + grabIt);
                 }
-            } else {
+            }
+            else if (response.contains("throw")) {
+                if (grabIt.equals(Items.weapons[4])){
+                    System.out.println("Why does everyone keep doing that? I don't LOOK like a Charizard DO I!!");
+                }
+            }
+            else if (response.contains("defend")||response.contains("slay")){
+                if (grabIt.equals(Items.weapons[1])){
+                    System.out.println("No! I remember that sword! I WON'T LET IT HAPPEN AGAIN!");
+                }
+            }
+            else {
                 System.out.println("I am growing tired of this. You've been flamed.");
                 removeHealth();
             }

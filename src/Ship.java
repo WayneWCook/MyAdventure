@@ -98,9 +98,15 @@ class Ship extends ModelRoom {
     }
     void goEast() {
         System.out.println("It's all ocean as far as you can sea");
-    if (kbio.YNRequestInput("Would you like to jump in?")){
-        System.out.println("You just woke up on a faraway island");
+    if (kbio.YNRequestInput("Would you like to jump in?\nIf you have Life Savers, they just might help you here.")){
+        String item = grabAnItem();
+        if (item.equals("Life Savers")) {
+            System.out.println("Your Life Savers helped you not drown\nYou just woke up on a faraway island");
+        }
+        else{
+        System.out.println("You just woke up on a faraway island\nYou just lost a health");
         removeHealth();
+        }
         super.getRoom(7).enter();
         }
     }

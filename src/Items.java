@@ -12,8 +12,8 @@ class Items {
     final static String[] candyBar = {"Butter Finger", "Snickers", "Dove", "Necco","80% Cocoa Dark Chocolate",
             "Good & Plenty", "Red Licorice", "Black Licorice", "Aussie Bites", "Oreos", "Sweet Tarts", "Life Savers",
             "Black Crows", "Juicy Fruit Gum"};
-    final static String[] treasures = {"Flashlight", "Ancient Scroll", "boiling water"};
-    final static String[] weapons = {"Swiss Army Knife", "Japanese Samurai Sword", "Spatula", "Hard Spaghetti noodle spears"};
+    final static String[] treasures = {"Flashlight", "Ancient Scroll", "boiling water", "Jewel"};
+    final static String[] weapons = {"Swiss Army Knife", "Japanese Samurai Sword", "Spatula", "Hard Spaghetti noodle spears", "Pokeball", "stick"};
     final static String[] friends = {"Dragon", "George", "Sally"};
     final static String[] assets = {"Treasures", "Candy Bars", "Weapons", "Friends"};
 

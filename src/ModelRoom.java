@@ -181,7 +181,8 @@ public abstract class ModelRoom {
         allRooms.add(island);                                   // Room 7-Island
         BaseballField baseballField = new BaseballField();
         allRooms.add(baseballField);                            // Room 8-Baseball Field
-
+        Jungle jungle = new Jungle();
+        allRooms.add(jungle);                                   // Room 9-Jungle
         if (kbio.YNRequestInput("Do you want to list all of the rooms?")) {
             System.out.println("You have the following rooms");
             for (int i = 0; i < allRooms.size(); i++) {
