@@ -68,7 +68,7 @@ class StartAdventure extends ModelRoom {
         super.firstCall(startOver);
         ModelRoom start = super.getRoom(0);
         start.enter();          // Street should always be the first item in the index.
-        System.out.println("Thank you for joing the adventure. Your final inventory is:");
+        System.out.println("Thank you for joining the adventure. Your final inventory is:");
         super.printStatus();
         fileContent = new ArrayList<>();
         fileContent.add(getUserName() + "\n");
@@ -102,7 +102,7 @@ class StartAdventure extends ModelRoom {
                 fileContent.add(getFriendsAsset(i) + "\n");
             }
         }
-        // check tio see if file exists before writing to it.
+        // check to see if file exists before writing to it.
         String inActiveDate;
         if (file.isFile()) {
             Calendar cal = Calendar.getInstance();
@@ -115,7 +115,7 @@ class StartAdventure extends ModelRoom {
             } catch (Exception e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
-                System.out.println("Date cannot be properly formated");
+                System.out.println("Date cannot be properly formatted");
                 inActiveDate = "bak";
             }
             int buNum = 0;

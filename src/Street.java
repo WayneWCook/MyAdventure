@@ -39,6 +39,7 @@ public class Street extends ModelRoom {
             if (localTreasures.size() > 0) {
                 possition = "down";
                 retVal = SavedItems("Grate");
+
             }
             System.out.println("The grate is " + possition);
 
@@ -85,6 +86,7 @@ public class Street extends ModelRoom {
     void goUp() {
         if (checkGrate()) {
             System.out.println("You landed on the grate.");
+
             this.enter();
         } else {
             System.out.println("You fell through an open grate. You just lost a life.");

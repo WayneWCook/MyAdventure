@@ -310,13 +310,15 @@ public abstract class ModelRoom {
 
     Boolean SavedItems(String object){
         boolean check = true;
-        for (int j =0; j<=Items.treasures.length; j++){
-            if (Items.treasures[j].equals(object)){
-                check = false;
+    int size = this.getSizeTreasures(), i;
+        if (size > 0) {
+        for (i = 0; i < size; i++) {
+            if(getTrresduresAsset(i).equals(object)){
+                check=false;
             }
         }
-
-        return check;
+    }
+        return  check;
     }
 
     // Now for the actual chose
