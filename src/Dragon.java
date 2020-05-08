@@ -109,7 +109,7 @@ class Dragon extends ModelRoom {
                     System.out.println("I REALLY do not LIKE " + grabIt);
                 }
             }
-            else if (response.contains("throw")) {
+            else if (response.contains("throw")||response.contains("catch")) {
                 if (grabIt.equals(Items.weapons[4])){
                     System.out.println("Why does everyone keep doing that? I don't LOOK like a Charizard DO I!!");
                 }

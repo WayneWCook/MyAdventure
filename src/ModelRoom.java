@@ -322,7 +322,7 @@ public abstract class ModelRoom {
         return  check;
     }
 
-    // Now for the actual chose
+    // Now for the actual choice
     String grabAnItem() {
         System.out.println("Welcome to selecting an item from your stash");
         String retVal;

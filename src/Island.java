@@ -19,14 +19,14 @@ class Island extends ModelRoom {
     }
 
     // Methods
-    private void pickUpItem() {
+    private void pickUpItem() {                                 // function for picking up the item in this room
         if (localWeapons.size() > 0) {
             super.addWeapon(localWeapons.get(0));
             localWeapons.remove(0);
         }
 
     }
-    private void grabJewel(){
+    private void grabJewel(){                                     // allows for user to pick up the jewel
     if (localTreasures.size() > 0) {
         super.addTreasure(localTreasures.get(0));
         localTreasures.remove(0);
@@ -109,7 +109,13 @@ class Island extends ModelRoom {
     super.getRoom(9).enter();
     }
     void goEast() {
-        System.out.println("There is nothing here.");
+        System.out.println("It appears as if something has washed up on the shore");
+        if (kbio.YNRequestInput("Do you want to go take a look?")){
+            if (kbio.YNRequestInput("It looks like a little pink blob, do you want to pick it up?")){
+                System.out.println("It's a jellyfish!\nYou lost one health");
+                removeHealth();
+            }
+        }
     }
     void goWest() {
         System.out.println("There is nothing here.");
