@@ -114,7 +114,7 @@ class OfficeBuilding extends ModelRoom {
             do {
                 System.out.print("Wheeee! ");
             } while (super.rollDie() != 5);
-            getRoom(9).enter();
+            getRoom(8).enter();
         } else if (floor == 0) {
             System.out.println("You are looking at a solid cement wall.");
         } else System.out.println("You are looking over the baseball field.");
