@@ -86,8 +86,6 @@ public class Street extends ModelRoom {
     void goUp() {
         if (checkGrate()) {
             System.out.println("You landed on the grate.");
-
-            this.enter();
         } else {
             System.out.println("You fell through an open grate. You just lost a life.");
             super.removeLife();

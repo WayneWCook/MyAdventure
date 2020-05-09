@@ -18,6 +18,7 @@ public abstract class ModelRoom {
     static private ArrayList<String> friends = new ArrayList<>();
     static private ArrayList<ModelRoom> allRooms = new ArrayList<>();
     static protected Trogdor trogdor = new Trogdor();
+    private Random random = new Random();
 
     // Attributes - we want one copy for these attributes and not one copy for every room created.
     static private int lives = 3;
@@ -183,6 +184,8 @@ public abstract class ModelRoom {
         allRooms.add(baseballField);                            // Room 8-Baseball Field
         Jungle jungle = new Jungle();
         allRooms.add(jungle);                                   // Room 9-Jungle
+        OfficeBuilding officeBuilding = new OfficeBuilding();
+        allRooms.add(officeBuilding);                           // Room 10-Office Building
         if (kbio.YNRequestInput("Do you want to list all of the rooms?")) {
             System.out.println("You have the following rooms");
             for (int i = 0; i < allRooms.size(); i++) {
@@ -241,16 +244,21 @@ public abstract class ModelRoom {
     }
 
     // Try to randomize events
+    int rollDie() {
+        int die1 = random.nextInt(6) + 1;
+        int die2 = random.nextInt(6) + 1;
+        int retVal = die1 + die2;
+        System.out.println("You rolled a " + die1 + " and a " + die2 + " for a total of " + retVal);
+        return retVal;
+    }
+
+    // Wait for an event
     void rollDice(int results) {
         int die1, die2, total;
-        Random random = new Random();
         boolean contLoop = true;
         do {
             kbio.requestInput("Press enter to roll the dice and see if you can roll a total of " + results);
-            die1 = random.nextInt(6) + 1;
-            die2 = random.nextInt(6) + 1;
-            total = die1 + die2;
-            System.out.println("You rolled a " + die1 + " and a " + die2 + " for a total of " + total);
+            total = rollDie();
             if (total == results) contLoop = false;
         } while (contLoop);
     }
