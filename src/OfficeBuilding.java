@@ -61,17 +61,30 @@ class OfficeBuilding extends ModelRoom {
             if (exitAdventure) loop = false;
         } while (loop);
     }
-    void goUp() {
-        if (floor == maxFloors) System.out.print("You are already on the roof, you cannot go any higher.");
-        else if (floor == 0) System.out.print("You are already,in the basement, you cannot go any lower.");
+
+    // Choose elevator or stairs
+    void takeElevator() {
         if (kbio.YNRequestInput("Do you want to take the elveator?")) removeHealth();
         else {
             System.out.println("good, you are taking the stairs. That is healthy.");
             addHealth();
         }
     }
+
+    void goUp() {
+        if (floor == maxFloors) System.out.print("You are already on the roof, you cannot go any higher.");
+        else {
+            takeElevator();
+            floor++;
+        }
+    }
+
     void goDown() {
-        goUp();
+        if (floor == 0) System.out.print("You are already,in the basement, you cannot go any lower.");
+        else {
+            takeElevator();
+            floor--;
+        }
     }
 
     void goNorth() {

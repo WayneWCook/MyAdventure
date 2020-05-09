@@ -129,14 +129,22 @@ class BaseballField extends ModelRoom {
         }
         if (carry == 1) runs++;
     }
+
+    // Clear balls and strikes.
+    void clearBallsStrikes() {
+        balls = 0;
+        strikes = 0;
+    }
     void doAction() {
         if (kbio.YNRequestInput("Do you want to play a game of baseball?")) {
             System.out.println("You get to be our designated hitter. Try to get a run home to win a trophy.");
            do {
+               kbio.requestInput("You get to bat again");
                 switch (super.rollDie()) {
                     case 2:
                         System.out.println("You just hit an home run and won the game");
                         runs++;
+                        clearBallsStrikes();
                         break;
                     case 3:
                         System.out.print("You just hit a triple.");
@@ -148,6 +156,7 @@ class BaseballField extends ModelRoom {
                             bases[1] = 0;
                             bases[2] = 1;
                         }
+                        clearBallsStrikes();
                         baserunners = true;
                     case 4:
                         System.out.print("You just hit a dobule.");
@@ -159,11 +168,13 @@ class BaseballField extends ModelRoom {
                             bases[1] = 1;
                             bases[2] = 0;
                         }
+                        clearBallsStrikes();
                         baserunners = true;
                         break;
                     case 5:
                         System.out.print("You just hit a single.");
                         advanceRunners();
+                        clearBallsStrikes();
                         baserunners = true;
                         break;
                     case 6:
@@ -176,20 +187,22 @@ class BaseballField extends ModelRoom {
                         if (balls == 4) {
                             System.out.println("You walked.");
                             advanceRunners();
-                        } else balls = 0;
+                            clearBallsStrikes();
+                        }
                         break;
                     case 8:
-                        System.out.print("You just received a called strike.");
+                        System.out.println("You just received a called strike.");
                         strikes++;
                         if (strikes == 3) {
                             outs++;
-                            strikes = 0;
+                            clearBallsStrikes();
                         }
                         break;
                     case 9:
                         System.out.println("You flied out to the outfield");
                         if (bases[2] == 1) runs++;
                         outs++;
+                        clearBallsStrikes();
                         break;
                     case 10:
                         System.out.println("You grounded out, any runners advance one base.");
@@ -202,6 +215,7 @@ class BaseballField extends ModelRoom {
                             bases[1] = 1;
                         }
                         outs++;
+                        clearBallsStrikes();
                         break;
                     case 11:
                         System.out.println("You were hit by a pitch, lose a health and take a base.");
@@ -212,11 +226,12 @@ class BaseballField extends ModelRoom {
                     case 12:
                         System.out.println("You hit a home run and won the game!");
                         runs++;
+                        clearBallsStrikes();
                         break;
                     default:
                         break;
                 }
-                System.out.println("you have " + outs + " outs, " + balls + " balls, and " + strikes + " strikes.");
+                System.out.println("You have " + outs + " outs, " + balls + " balls, and " + strikes + " strikes.");
                 if (baserunners) {
                     System.out.print("You have base runners on");
                     if (bases[0] == 1) System.out.print(" first");
